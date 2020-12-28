@@ -462,6 +462,7 @@ namespace CFD_Mapper
 
             if (input.Length == 100) Type = "HEXA";
             if (input.Length == 80) Type = "PENTA";
+            if (input.Length == 60 || input.Length == 120) Type = "TETRA";
 
             if (Type == "HEXA")
             {
@@ -473,6 +474,13 @@ namespace CFD_Mapper
             if (Type == "PENTA")
             {
                 for (int i = 0; i < 8; i++)
+                {
+                    data.Add(input.Substring(10 * i, 10).Replace(" ", ""));
+                }
+            }
+            if (Type == "TETRA")
+            {
+                for (int i = 0; i < 6; i++)
                 {
                     data.Add(input.Substring(10 * i, 10).Replace(" ", ""));
                 }
@@ -501,6 +509,13 @@ namespace CFD_Mapper
                 Face.Add(new int[4] { Nodes[2], Nodes[0], Nodes[3], Nodes[5] });
                 Face.Add(new int[3] { Nodes[0], Nodes[2], Nodes[1] });
                 Face.Add(new int[3] { Nodes[3], Nodes[4], Nodes[5] });
+            }
+            if(Type == "TETRA")
+            {
+                Face.Add(new int[3] { Nodes[0], Nodes[1], Nodes[3]});
+                Face.Add(new int[3] { Nodes[1], Nodes[2], Nodes[3] });
+                Face.Add(new int[3] { Nodes[2], Nodes[0], Nodes[3] });
+                Face.Add(new int[3] { Nodes[0], Nodes[1], Nodes[2] });
             }
         }
     }
