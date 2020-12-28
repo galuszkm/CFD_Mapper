@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Costura.Fody.4.1.0\build\Costura.Fody.props" Condition="Exists('packages\Costura.Fody.4.1.0\build\Costura.Fody.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AE407B2D-EB89-4B47-8262-0B97CEF3502A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>CFD_Mapper</RootNamespace>
+    <AssemblyName>CFD_Mapper</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>CFD_Mapper.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Costura, Version=4.1.0.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
+      <HintPath>packages\Costura.Fody.4.1.0\lib\net40\Costura.dll</HintPath>
+    </Reference>
+    <Reference Include="Kitware.mummy.Runtime, Version=1.0.2.599, Culture=neutral, PublicKeyToken=995c7fb9db2c1b44, processorArchitecture=AMD64">
+      <HintPath>packages\Activiz.NET.x64.5.8.0\lib\net20\Kitware.mummy.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Kitware.VTK, Version=5.8.0.607, Culture=neutral, PublicKeyToken=995c7fb9db2c1b44, processorArchitecture=AMD64">
+      <HintPath>packages\Activiz.NET.x64.5.8.0\lib\net20\Kitware.VTK.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RenderInterface.cs" />
+    <Page Include="About.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Database.cs" />
+    <Compile Include="Functions.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FodyWeavers.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="loadimage.jpg" />
+    <EmbeddedResource Include="Logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FodyWeavers.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Costura64\Cosmo.dll" />
+    <EmbeddedResource Include="Costura64\Kitware.mummy.Runtime.dll" />
+    <EmbeddedResource Include="Costura64\Kitware.mummy.Runtime.Unmanaged.dll" />
+    <EmbeddedResource Include="Costura64\Kitware.VTK.dll" />
+    <EmbeddedResource Include="Costura64\Kitware.VTK.vtkCharts.Unmanaged.dll" />
+    <EmbeddedResource Include="Costura64\Kitware.VTK.vtkCommon.Unmanaged.dll" />
+    <EmbeddedResource Include="Costura64\Kitware.VTK.vtkFiltering.Unmanaged.dll" />
+    <EmbeddedResource Include="Costura64\Kitware.VTK.vtkGenericFiltering.Unmanaged.dll" />
+    <EmbeddedResource Include="Costura64\Kitware.VTK.vtkGeovis.Unmanaged.dll" />
+    <EmbeddedResource Include="Costura64\Kitware.VTK.vtkGraphics.Unmanaged.dll" />
+    <EmbeddedResource Include="Costura64\Kitware.VTK.vtkHybrid.Unmanaged.dll" />
+    <EmbeddedResource Include="Costura64\Kitware.VTK.vtkImaging.Unmanaged.dll" />
+    <EmbeddedResource Include="Costura64\Kitware.VTK.vtkInfovis.Unmanaged.dll" />
+    <EmbeddedResource Include="Costura64\Kitware.VTK.vtkIO.Unmanaged.dll" />
+    <EmbeddedResource Include="Costura64\Kitware.VTK.vtkParallel.Unmanaged.dll" />
+    <EmbeddedResource Include="Costura64\Kitware.VTK.vtkRendering.Unmanaged.dll" />
+    <EmbeddedResource Include="Costura64\Kitware.VTK.vtkViews.Unmanaged.dll" />
+    <EmbeddedResource Include="Costura64\Kitware.VTK.vtkVolumeRendering.Unmanaged.dll" />
+    <EmbeddedResource Include="Costura64\Kitware.VTK.vtkWidgets.Unmanaged.dll" />
+    <EmbeddedResource Include="Costura32\msvcm90.dll" />
+    <EmbeddedResource Include="Costura32\msvcp90.dll" />
+    <EmbeddedResource Include="Costura32\msvcr90.dll" />
+    <EmbeddedResource Include="Costura64\VPIC.dll" />
+    <EmbeddedResource Include="Costura64\vtkalglib.dll" />
+    <EmbeddedResource Include="Costura64\vtkCharts.dll" />
+    <EmbeddedResource Include="Costura64\vtkCommon.dll" />
+    <EmbeddedResource Include="Costura64\vtkDICOMParser.dll" />
+    <EmbeddedResource Include="Costura64\vtkexoIIc.dll" />
+    <EmbeddedResource Include="Costura64\vtkexpat.dll" />
+    <EmbeddedResource Include="Costura64\vtkFiltering.dll" />
+    <EmbeddedResource Include="Costura64\vtkfreetype.dll" />
+    <EmbeddedResource Include="Costura64\vtkftgl.dll" />
+    <EmbeddedResource Include="Costura64\vtkGenericFiltering.dll" />
+    <EmbeddedResource Include="Costura64\vtkGeovis.dll" />
+    <EmbeddedResource Include="Costura64\vtkGraphics.dll" />
+    <EmbeddedResource Include="Costura64\vtkHybrid.dll" />
+    <EmbeddedResource Include="Costura64\vtkImaging.dll" />
+    <EmbeddedResource Include="Costura64\vtkInfovis.dll" />
+    <EmbeddedResource Include="Costura64\vtkIO.dll" />
+    <EmbeddedResource Include="Costura64\vtkjpeg.dll" />
+    <EmbeddedResource Include="Costura64\vtklibxml2.dll" />
+    <EmbeddedResource Include="Costura64\vtkmetaio.dll" />
+    <EmbeddedResource Include="Costura64\vtkNetCDF.dll" />
+    <EmbeddedResource Include="Costura64\vtkNetCDF_cxx.dll" />
+    <EmbeddedResource Include="Costura64\vtkParallel.dll" />
+    <EmbeddedResource Include="Costura64\vtkpng.dll" />
+    <EmbeddedResource Include="Costura64\vtkproj4.dll" />
+    <EmbeddedResource Include="Costura64\vtkRendering.dll" />
+    <EmbeddedResource Include="Costura64\vtksys.dll" />
+    <EmbeddedResource Include="Costura64\vtktiff.dll" />
+    <EmbeddedResource Include="Costura64\vtkverdict.dll" />
+    <EmbeddedResource Include="Costura64\vtkViews.dll" />
+    <EmbeddedResource Include="Costura64\vtkVolumeRendering.dll" />
+    <EmbeddedResource Include="Costura64\vtkWidgets.dll" />
+    <EmbeddedResource Include="Costura64\vtkzlib.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Ten projekt zawiera odwołania do pakietów NuGet, których nie ma na tym komputerze. Użyj przywracania pakietów NuGet, aby je pobrać. Aby uzyskać więcej informacji, zobacz http://go.microsoft.com/fwlink/?LinkID=322105. Brakujący plik: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Costura.Fody.4.1.0\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Costura.Fody.4.1.0\build\Costura.Fody.props'))" />
+    <Error Condition="!Exists('packages\Fody.6.3.0\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Fody.6.3.0\build\Fody.targets'))" />
+  </Target>
+  <Import Project="packages\Fody.6.3.0\build\Fody.targets" Condition="Exists('packages\Fody.6.3.0\build\Fody.targets')" />
+</Project>

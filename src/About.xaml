@@ -1,0 +1,61 @@
+﻿<Window x:Class="CFD_Mapper.About"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CFD_Mapper"
+        mc:Ignorable="d"
+        Title="About" Height="480" Width="800" Background="WhiteSmoke" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="600"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <RichTextBox x:Name="License_Box" IsReadOnly="True" HorizontalAlignment="Left" Padding="5,5,5,5"
+                         TextBlock.TextAlignment="Justify" TextBlock.LineHeight="1" Background="WhiteSmoke" FontSize="12"
+                     VerticalScrollBarVisibility="Auto"  Margin="10,35,0,0" Width="590" Height="220" VerticalAlignment="Top" >
+                <FlowDocument>
+                    <Paragraph/>
+                </FlowDocument>
+            </RichTextBox>
+            <Label Content="License:" Margin="10,9,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75"/>
+            <Label Content="3rd party packages:" Margin="10,354,0,0" HorizontalAlignment="Left" Width="115" Height="26" VerticalAlignment="Top"/>
+            <RichTextBox x:Name="Packages_Box" IsReadOnly="True" HorizontalAlignment="Left" Padding="5,5,5,5"
+                TextBlock.TextAlignment="Justify" TextBlock.LineHeight="1" Background="WhiteSmoke" FontSize="12"
+                VerticalScrollBarVisibility="Auto"  Margin="10,380,0,11" Width="590" >
+                <FlowDocument>
+                    <Paragraph/>
+                </FlowDocument>
+            </RichTextBox>
+            <Label Content="Source:" Margin="10,265,0,0" HorizontalAlignment="Left" Width="115" Height="26" VerticalAlignment="Top"/>
+            <RichTextBox x:Name="Source_Box" IsReadOnly="True" HorizontalAlignment="Left" Padding="5,5,5,5"
+                TextBlock.TextAlignment="Justify" TextBlock.LineHeight="1" Background="WhiteSmoke" FontSize="12"
+                VerticalScrollBarVisibility="Auto"  Margin="10,291,0,0" Width="590" Height="52" VerticalAlignment="Top" >
+                <FlowDocument>
+                    <Paragraph/>
+                </FlowDocument>
+            </RichTextBox>
+        </Grid>
+        <Label Content="CFD Mapper" Margin="50,34,0,0" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Width="85" Grid.Column="1"
+               FontSize="15" Padding="0,0,0,0"/>
+        <Label Content="v2.2.1" Margin="75,55,0,0" Height="15" VerticalAlignment="Top" HorizontalAlignment="Left" Width="35" Grid.Column="1"
+            FontSize="12" Padding="0,0,0,0"/>
+        <Canvas Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="40,85,0,0" VerticalAlignment="Top" Width="100">
+            <Polyline Points="0,50 74,49 80,48 83,47 85,45 88,42 89,39 90,35 90,31 89,27 
+			                  88,24 85,22 81,21 77,21 74,22 70,24 69,26 68,30 69,35 70,36 74,37 78,36 79,33 80,31 " 
+				Stroke="#FF0077C9" StrokeThickness="3"/>
+            <Polyline Points="8,38 41,38 46,38 50,37 54,34 56,28 57,23 57,18 55,14 53,11 50,10 46,9 43,9
+				             39,10 36,12 34,16 34,20 35,23 39,25 43,25 46,23 47,20" 
+					Stroke="#FF0077C9" StrokeThickness="3"/>
+            <Polyline Points="15,61 57,61 61,62 66,63 70,65 73,67 75,72 75,74 75,80 74,85 71,88
+				67,89 62,89 57,88 54,85 53,80 55,76 59,75 63,76 65,78" 
+					Stroke="#FF0077C9" StrokeThickness="3"/>
+            <Polyline Points="0,0 82,1 86,2 90,3 92,4 95,6 98,9 100,12 101,15 102,20 102,80 101,84
+				  100,87 99,90 97,93 94,96 91,98 87,99 83,100 0,100" 
+					Stroke="Black" StrokeThickness="3"/>
+        </Canvas>
+        <Label Content="Released:  12/2020" Margin="40,200,0,0" Height="15" VerticalAlignment="Top" HorizontalAlignment="Left" Width="105" Grid.Column="1"
+            FontSize="11" Padding="0,0,0,0"/>
+    </Grid>
+</Window>
