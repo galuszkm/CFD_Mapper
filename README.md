@@ -1,7 +1,7 @@
 # CFD Pressure Mapper
 
 Convert fluid pressure from CFD analysis into a boundary condition of Finite Element model.\
-[Download "CFD_Mapper.zip"](bin/CFD_Mapper.zip) from "bin" directory to test it!
+[Download "CFD_Mapper.zip"](https://github.com/galuszkm/CFD_Mapper/raw/main/bin/CFD_Mapper.zip) from "bin" directory to test it!
 
 ## Introduction
 
