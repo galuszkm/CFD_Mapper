@@ -8,13 +8,13 @@ Convert fluid pressure from CFD analysis into a boundary condition of Finite Ele
 
 ## Introduction
 
-CFD Mapper is a stand-alone application developed to convert fuid pressure into a boundary condition of Finite Element model. It is an open-source software, supports 3D data visualization and parallel computing. 
-CFD simulation is a commonly used tool to identify pressure distribution along the structure walls. Usually FE mesh does not match with CFD cell grid. In this case
-mapping procedure needs to be involved to transfer load across the domains.
-First reason of creating this program was to couple independent CFD and FEA solvers. Advanced simulation environments like ANSYS offer similar tools with, frankly speaking, quite limited features. The problem starts if you want to mix different software. Second reason was a mapping outcome visualization. Obviously, everyone wants to check what is the actual distribution of the load applied to the structure, but not all solvers create this kind of output. Therefore, I put great effort into effcient graphics rendering using third party packages.
-Main idea behind the code is distance based pressure mapping from CFD points to finite element faces with optional averaging called pressure smoothing. Application is compiled to single file assembly (.exe) with all .dll files embedded - no additional packages or installation is needed to run it.
+<space>CFD Mapper is a stand-alone application developed to convert fuid pressure into a boundary condition of Finite Element model. It is an open-source software, supports 3D data visualization and parallel computing.<br/>
+<space>CFD simulation is a commonly used tool to identify pressure distribution along the structure walls. Usually FE mesh does not match with CFD cell grid. In this case
+mapping procedure needs to be involved to transfer load across the domains.<br/>
+<space>First reason of creating this program was to couple independent CFD and FEA solvers. Advanced simulation environments like ANSYS offer similar tools with, frankly speaking, quite limited features. The problem starts if you want to mix different software. Second reason was a mapping outcome visualization. Obviously, everyone wants to check what is the actual distribution of the load applied to the structure, but not all solvers create this kind of output. Therefore, I put great effort into effcient graphics rendering using third party packages.<br/>
+<space>Main idea behind the code is distance based pressure mapping from CFD points to finite element faces with optional averaging called pressure smoothing. Application is compiled to single file assembly (.exe) with all .dll files embedded - no additional packages or installation is needed to run it.<br/>
 
-Fluid flow analysis can be performed with any solver (Fluent, CFX, OpenFOAM, etc.). Currently only LS-Dyna and MSC.Marc FE models are supported as a mapping target.
+ Fluid flow analysis can be performed with any solver (Fluent, CFX, OpenFOAM, etc.). Currently only LS-Dyna and MSC.Marc FE models are supported as a mapping target.
 
 
 ## Getting started
