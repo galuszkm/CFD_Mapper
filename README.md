@@ -3,7 +3,7 @@
 Convert fluid pressure from CFD analysis into a boundary condition of Finite Element model.\
 [Download "CFD_Mapper.zip"](https://github.com/galuszkm/CFD_Mapper/raw/main/bin/CFD_Mapper.zip) from "bin" directory to test it!
 
-![alt text](https://github.com/galuszkm/CFD_Mapper/blob/main/other/IntroPicture.png)
+<img src="https://github.com/galuszkm/CFD_Mapper/blob/main/other/IntroPicture.png" width="800" height="500" />
 
 ## Introduction
 
