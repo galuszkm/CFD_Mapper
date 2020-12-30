@@ -63,7 +63,7 @@ FE faces have grey color in Plot input mode. Wireframe and transparency could be
 <img src="https://github.com/galuszkm/CFD_Mapper/blob/main/other/GUI.PNG">
 
 
-<br>Plot output button is enabled after mapping, click it to evaluate the outcome. You can quickly switch between input and output data to compare them, color scale remains unchanged. In output mode CFD points are hidden and faces with no pressure assignment have gray color. <br/><br><br/>
+<br>Plot output button is enabled after mapping, click it to evaluate the outcome. You can quickly switch between input and output data to compare them, color scale remains unchanged. In output mode CFD points are hidden and faces with no pressure assignment have gray color. <br/><br>
 
 <img src="https://github.com/galuszkm/CFD_Mapper/blob/main/other/Input_Output.png">
 
