@@ -3,6 +3,8 @@
 Convert fluid pressure from CFD analysis into a boundary condition of Finite Element model.\
 [Download "CFD_Mapper.zip"](https://github.com/galuszkm/CFD_Mapper/raw/main/bin/CFD_Mapper.zip) from "bin" directory to test it!
 
+![alt text](https://github.com/galuszkm/CFD_Mapper/blob/main/other/IntroPicture.png)
+
 ## Introduction
 
 CFD simulation is a commonly used tool to identify pressure distribution along the structure walls.
@@ -11,3 +13,6 @@ This program provides a simple and effective mapping procedure between completel
 
 Fluid flow analysis can be performed with any solver (Fluent, CFX, OpenFOAM, etc.)
 Currently only LS-Dyna and MSC.Marc FE models are supported as a mapping target.
+
+## Example
+
