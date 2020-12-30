@@ -7,6 +7,7 @@ Convert fluid pressure from CFD analysis into a boundary condition of Finite Ele
 
 ## Introduction
 
+<center>
 CFD Mapper is a stand-alone application developed to convert fuid pressure into a boundary condition of Finite Element model. It is an open-source software, supports 3D data visualization and parallel computing. 
 CFD simulation is a commonly used tool to identify pressure distribution along the structure walls. Usually FE mesh does not match with CFD cell grid. In this case
 mapping procedure needs to be involved to transfer load across the domains.
@@ -14,6 +15,7 @@ First reason of creating this program was to couple independent CFD and FEA solv
 Main idea behind the code is distance based pressure mapping from CFD points to finite element faces with optional averaging called pressure smoothing. Application is compiled to single file assembly (.exe) with all .dll files embedded - no additional packages or installation is needed to run it.
 
 Fluid flow analysis can be performed with any solver (Fluent, CFX, OpenFOAM, etc.). Currently only LS-Dyna and MSC.Marc FE models are supported as a mapping target.
+</center>
 
 ## Getting started
 
@@ -28,8 +30,10 @@ Finite element model input could be Marc Input (.dat) or LS-Dyna input deck (.k)
 <img src="https://github.com/galuszkm/CFD_Mapper/blob/main/other/Marc_input.PNG"/>
 <img src="https://github.com/galuszkm/CFD_Mapper/blob/main/other/LsDyna_input.PNG"/>
 
+<center>
 In CFD Mapper pressure input data are represented by points with color specified by default scale (min/max). You can modify CFD data appearance with Color settings subpanel. Use CFD point size box to increase/decrease vertex size. Colorbar scale could be adjusted with Color range boxes.
 FE faces have grey color in Plot input mode. Wireframe and transparency could be turn on/off in View section in Top toolbar. You can also create clip plane normal to X, Y or Z axis using Clip plane subpanel.
+</center>
 
 <img src="https://github.com/galuszkm/CFD_Mapper/blob/main/other/GUI.PNG">
 
