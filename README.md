@@ -10,7 +10,7 @@ CFD Mapper is able to read formatted CFD steady state result from any solver (Fl
 
 ## Introduction
 
-CFD Mapper is a stand-alone application developed to convert fuid pressure into a boundary condition of Finite Element model. It is an open-source software, supports 3D data visualization and parallel computing.<br/>
+CFD Mapper is a stand-alone C#.NET application developed to convert fuid pressure into a boundary condition of Finite Element model. It is an open-source software, supports 3D data visualization and parallel computing.<br/>
 
 CFD simulation is a commonly used tool to identify pressure distribution along the structure walls. Usually FE mesh does not match with CFD cell grid. In this case
 mapping procedure needs to be involved to transfer load across the domains.<br/>
