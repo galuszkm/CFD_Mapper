@@ -460,9 +460,21 @@ namespace CFD_Mapper
             List<string> data = new List<string>();
             Face = new List<int[]>();
 
-            if (input.Length == 100) Type = "HEXA";
-            if (input.Length == 80) Type = "PENTA";
-            if (input.Length == 60 || input.Length == 120) Type = "TETRA";
+            ID = int.Parse(input.Substring(0, 10));
+            Type_No = int.Parse(input.Substring(10, 10));
+
+            // Finite element types
+            List<int> Tria = new List<int> { 138, 49, 158, 200 };
+            List<int> Quad = new List<int> { 75, 140, 139, 18, 147, 68, 22, 72, 30, 148 };
+            List<int> Tetra = new List<int> { 134, 241, 157, 127, 130, 184 };
+            List<int> Penta = new List<int> { 136, 202 };
+            List<int> Hexa = new List<int> { 7, 84, 117, 120, 146, 185 };
+
+            if (Tria.Contains(Type_No)) Type = "TRIA";
+            if (Quad.Contains(Type_No)) Type = "QUAD";
+            if (Tetra.Contains(Type_No)) Type = "TETRA";
+            if (Penta.Contains(Type_No)) Type = "PENTA";
+            if (Hexa.Contains(Type_No)) Type = "HEXA";
 
             if (Type == "HEXA")
             {
@@ -485,13 +497,34 @@ namespace CFD_Mapper
                     data.Add(input.Substring(10 * i, 10).Replace(" ", ""));
                 }
             }
-
-            ID = int.Parse(data[0]);
-            Type_No = int.Parse(data[1]);
+            if (Type == "TRIA")
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    data.Add(input.Substring(10 * i, 10).Replace(" ", ""));
+                }
+            }
+            if (Type == "QUAD")
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    data.Add(input.Substring(10 * i, 10).Replace(" ", ""));
+                }
+            }
 
             Nodes = new List<int>();
             for (int i = 2; i < data.Count; i++) Nodes.Add(int.Parse(data[i]));
             Nodes = Nodes.Distinct().ToList();
+
+            if (Type == "TRIA")
+            {
+                Face.Add(new int[3] { Nodes[0], Nodes[1], Nodes[2] });
+            }
+
+            if(Type == "QUAD")
+            {
+                Face.Add(new int[4] { Nodes[0], Nodes[1], Nodes[2], Nodes[3] });
+            }
 
             if (Type == "HEXA")
             {
@@ -579,15 +612,12 @@ namespace CFD_Mapper
             // Define box sourrounding face
             // Minimal and Maximal coordinates are taken from nodes
             Bounds = new double[6];
-            foreach (int n in Nodes)
-            {
-                if (NodeLib[n].X - R * 0.5 < Bounds[0]) Bounds[0] = NodeLib[n].X - R * 0.5;
-                if (NodeLib[n].X + R * 0.5 > Bounds[1]) Bounds[1] = NodeLib[n].X + R * 0.5;
-                if (NodeLib[n].Y - R * 0.5 < Bounds[2]) Bounds[2] = NodeLib[n].Y - R * 0.5;
-                if (NodeLib[n].Y + R * 0.5 > Bounds[3]) Bounds[3] = NodeLib[n].Y + R * 0.5;
-                if (NodeLib[n].Z - R * 0.5 < Bounds[4]) Bounds[4] = NodeLib[n].Z - R * 0.5;
-                if (NodeLib[n].Z + R * 0.5 > Bounds[5]) Bounds[5] = NodeLib[n].Z + R * 0.5;
-            }
+            Bounds[0] = Centroid.X - R;
+            Bounds[1] = Centroid.X + R;
+            Bounds[2] = Centroid.Y - R;
+            Bounds[3] = Centroid.Y + R;
+            Bounds[4] = Centroid.Z - R;
+            Bounds[5] = Centroid.Z + R;
         }
 
     }
