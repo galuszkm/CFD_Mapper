@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Kitware.VTK;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -297,19 +299,21 @@ namespace CFD_Mapper
 
         public void Export_MarcOutput(string path)
         {
+            StringBuilder proc = new StringBuilder();
+
             // ========================== MSC Marc OUTPUT FILE ==================================
 
-            string proc = "*set_update off\n" +
-                              "*set_undo off\n" +
-                              "*new_md_table 1 1\n" +
-                              "*table_name Pressure_0_to_1\n" +
-                              "*set_md_table_type 1\n" +
-                              "time\n" +
-                              "*table_add\n" +
-                              "0\n" +
-                              "0\n" +
-                              "1\n" +
-                              "1\n";
+            proc.Append("*set_update off\n");
+            proc.Append("*set_undo off\n");
+            proc.Append("*new_md_table 1 1\n");
+            proc.Append("*table_name Pressure_0_to_1\n");
+            proc.Append("*set_md_table_type 1\n");
+            proc.Append("time\n");
+            proc.Append("*table_add\n");
+            proc.Append("0\n");
+            proc.Append("0\n");
+            proc.Append("1\n");
+            proc.Append("1\n");
 
             // Sort Pressure by the same value
             Dictionary<double, List<string>> PSorted = new Dictionary<double, List<string>>();
@@ -348,43 +352,55 @@ namespace CFD_Mapper
 
             foreach (double P in PList)
             {
-                proc += "*new_apply *apply_type face_load\n" +
-                        "*apply_name Pressure_" + P.ToString(CultureInfo.InvariantCulture) + "\n" +
-                        "*apply_dof p *apply_dof_value p\n" +
-                        "*apply_dof_table p\n" +
-                        "Pressure_0_to_1\n" +
-                        "*apply_option dist_ld_contact:suppress\n" +
-                        "*apply_dof_value p " + P.ToString(CultureInfo.InvariantCulture) + "\n" +
-                        "*add_apply_faces\n";
+                proc.Append("*new_apply *apply_type face_load\n");
+                proc.Append("*apply_name Pressure_" + Math.Round(P, DecimalPrecision).ToString(CultureInfo.InvariantCulture) + "\n");
+                proc.Append("*apply_dof p *apply_dof_value p\n");
+                proc.Append("*apply_dof_table p\n");
+                proc.Append("Pressure_0_to_1\n");
+                proc.Append("*apply_option dist_ld_contact:suppress\n");
+                proc.Append("*apply_dof_value p " + P.ToString(CultureInfo.InvariantCulture) + "\n");
+                proc.Append("*add_apply_faces\n");
 
                 foreach (string s in PSorted[P])
                 {
-                    proc += s + "\n";
+                    proc.Append(s + "\n");
                 }
-                proc += "# | End of List\n";
+                proc.Append("# | End of List\n");
 
                 foreach (string s in DB.Loadcase)
                 {
-                    proc += "*edit_loadcase " + s + "\n" +
-                            "*add_loadcase_loads Pressure_" + P.ToString(CultureInfo.InvariantCulture) + "\n";
+                    proc.Append("*edit_loadcase " + s + "\n" +
+                            "*add_loadcase_loads Pressure_" + P.ToString(CultureInfo.InvariantCulture) + "\n");
                 }
 
-                proc += "*add_job_applys Pressure_" + P.ToString(CultureInfo.InvariantCulture) + "\n";
-            }
-            proc += "*set_update on\n" +
-                    "*set_undo on\n";
+                proc.Append("*add_job_applys Pressure_" + P.ToString(CultureInfo.InvariantCulture) + "\n");
 
-            File.WriteAllText(fun.BeforeLast(path, ".") + "_PressureMapCFD.proc", proc);
+            }
+            proc.Append("*set_update on\n*set_undo on\n");
+
+            File.WriteAllText(fun.BeforeLast(path, ".") + "_PressureMapCFD.proc", proc.ToString());
 
             System.Windows.MessageBox.Show("Output file saved in selected model directory");
         }
 
         public void Export_LSDynaOutput(string path)
         {
+            StringBuilder proc = new StringBuilder();
+
             // ========================== LS-DYNA OUTPUT FILE ==================================
 
-            string proc = "*LOAD_SEGMENT\n";
-            proc += "$#    lcid        sf        at        n1        n2        n3        n4\n";
+            // Create default curve
+            proc.Append("$\n");
+            proc.Append("*DEFINE_CURVE_TITLE\n");
+            proc.Append("Pressure curve\n");
+            proc.Append("$#    lcid      sidr       sfa       sfo      offa      offo    dattyp     lcint\n");
+            proc.Append("     10001         0       1.0       1.0       0.0       0.0         0         0\n");
+            proc.Append("$#                a1                  o1\n");
+            proc.Append("                 0.0                 0.0\n");
+            proc.Append("                 1.0                 1.0\n$\n");
+
+            proc.Append("*LOAD_SEGMENT\n");
+            proc.Append("$#    lcid        sf        at        n1        n2        n3        n4\n");
 
             foreach (Face face in DB.Faces)
             {
@@ -399,8 +415,8 @@ namespace CFD_Mapper
                         string N3 = face.Nodes[2].ToString();
                         string N4 = face.Nodes[3].ToString();
 
-                        proc += string.Format("{0,10}{1,10}{2,10}{3,10}{4,10}{5,10}{6,10}\n",
-                                    LCID, SF, "0.0", N1, N2, N3, N4);
+                        proc.Append(string.Format("{0,10}{1,10}{2,10}{3,10}{4,10}{5,10}{6,10}\n",
+                                    LCID, SF, "0.0", N1, N2, N3, N4));
                     }
                     if (face.Nodes.Count == 3)
                     {
@@ -411,12 +427,15 @@ namespace CFD_Mapper
                         string N3 = face.Nodes[2].ToString();
                         string N4 = face.Nodes[2].ToString();
 
-                        proc += string.Format("{0,10}{1,10}{2,10}{3,10}{4,10}{5,10}{6,10}\n",
-                                    LCID, SF, "0.0", N1, N2, N3, N4);
+                        proc.Append(string.Format("{0,10}{1,10}{2,10}{3,10}{4,10}{5,10}{6,10}\n",
+                                    LCID, SF, "0.0", N1, N2, N3, N4));
                     }
                 }
             }
-            File.WriteAllText(fun.BeforeLast(path, ".") + "_PressureMapCFD.k", proc);
+            proc.Append("$");
+
+            // Write to file
+            File.WriteAllText(fun.BeforeLast(path, ".") + "_PressureMapCFD.k", proc.ToString());
 
             System.Windows.MessageBox.Show("Output file saved in selected model directory");
         }
