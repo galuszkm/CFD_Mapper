@@ -39,7 +39,7 @@
         </Grid>
         <Label Content="CFD Mapper" Margin="50,34,0,0" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Width="85" Grid.Column="1"
                FontSize="15" Padding="0,0,0,0"/>
-        <Label Content="v2.2.1" Margin="75,55,0,0" Height="15" VerticalAlignment="Top" HorizontalAlignment="Left" Width="35" Grid.Column="1"
+        <Label Content="v1.0.0" Margin="75,55,0,0" Height="15" VerticalAlignment="Top" HorizontalAlignment="Left" Width="35" Grid.Column="1"
             FontSize="12" Padding="0,0,0,0"/>
         <Canvas Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="40,85,0,0" VerticalAlignment="Top" Width="100">
             <Polyline Points="0,50 74,49 80,48 83,47 85,45 88,42 89,39 90,35 90,31 89,27 
