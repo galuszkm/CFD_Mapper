@@ -84,47 +84,62 @@ namespace CFD_Mapper
             iRen = new RenderInterface(VTK_Window);
 
             // Add Items to ComboBoxes
-            Smoothing.Items.Add(new ComboBoxItem().Content = "Min");
-            Smoothing.Items.Add(new ComboBoxItem().Content = "Max");
-            Smoothing.Items.Add(new ComboBoxItem().Content = "Average");
-            Smoothing.Items.Add(new ComboBoxItem().Content = "Linear");
-            Smoothing.Items.Add(new ComboBoxItem().Content = "Gaussian");
-            Smoothing.SelectedIndex = 2;
-            Precision.Items.Add(new ComboBoxItem().Content = "0");
-            Precision.Items.Add(new ComboBoxItem().Content = "1");
-            Precision.Items.Add(new ComboBoxItem().Content = "2");
-            Precision.Items.Add(new ComboBoxItem().Content = "3");
-            Precision.Items.Add(new ComboBoxItem().Content = "5");
-            Precision.Items.Add(new ComboBoxItem().Content = "8");
-            Precision.SelectedIndex = 0;
-            Radius_fac.Items.Add(new ComboBoxItem().Content = "0.5");
-            Radius_fac.Items.Add(new ComboBoxItem().Content = "1.0");
-            Radius_fac.Items.Add(new ComboBoxItem().Content = "1.5");
-            Radius_fac.Items.Add(new ComboBoxItem().Content = "2.0");
-            Radius_fac.Items.Add(new ComboBoxItem().Content = "2.5");
-            Radius_fac.Items.Add(new ComboBoxItem().Content = "3.0");
-            Radius_fac.Items.Add(new ComboBoxItem().Content = "5.0");
-            Radius_fac.Items.Add(new ComboBoxItem().Content = "10");
-            Radius_fac.SelectedIndex = 1;
-            Units.Items.Add(new ComboBoxItem().Content = "m, Pa");
-            Units.Items.Add(new ComboBoxItem().Content = "m, kPa");
-            Units.Items.Add(new ComboBoxItem().Content = "m, MPa");
-            Units.Items.Add(new ComboBoxItem().Content = "m, mPa");
-            Units.Items.Add(new ComboBoxItem().Content = "mm, Pa");
-            Units.Items.Add(new ComboBoxItem().Content = "mm, kPa");
-            Units.Items.Add(new ComboBoxItem().Content = "mm, MPa");
-            Units.Items.Add(new ComboBoxItem().Content = "mm, mPa");
-            Units.SelectedIndex = 0;
-            CFD_size.Items.Add(new ComboBoxItem().Content = "0.25");
-            CFD_size.Items.Add(new ComboBoxItem().Content = "0.5");
-            CFD_size.Items.Add(new ComboBoxItem().Content = "1");
-            CFD_size.Items.Add(new ComboBoxItem().Content = "2");
-            CFD_size.Items.Add(new ComboBoxItem().Content = "3");
-            CFD_size.Items.Add(new ComboBoxItem().Content = "4");
-            CFD_size.Items.Add(new ComboBoxItem().Content = "5");
-            CFD_size.Items.Add(new ComboBoxItem().Content = "10");
-            CFD_size.Items.Add(new ComboBoxItem().Content = "15");
-            CFD_size.SelectedIndex = 2;
+            if (Smoothing.Items.Count == 0)
+            {
+                Smoothing.Items.Add(new ComboBoxItem().Content = "Min");
+                Smoothing.Items.Add(new ComboBoxItem().Content = "Max");
+                Smoothing.Items.Add(new ComboBoxItem().Content = "Average");
+                Smoothing.Items.Add(new ComboBoxItem().Content = "Linear");
+                Smoothing.Items.Add(new ComboBoxItem().Content = "Gaussian");
+                Smoothing.SelectedIndex = 2;
+            }
+            if (Precision.Items.Count == 0)
+            {
+                Precision.Items.Add(new ComboBoxItem().Content = "0");
+                Precision.Items.Add(new ComboBoxItem().Content = "1");
+                Precision.Items.Add(new ComboBoxItem().Content = "2");
+                Precision.Items.Add(new ComboBoxItem().Content = "3");
+                Precision.Items.Add(new ComboBoxItem().Content = "5");
+                Precision.Items.Add(new ComboBoxItem().Content = "8");
+                Precision.SelectedIndex = 0;
+            }
+            if (Radius_fac.Items.Count == 0)
+            {
+                Radius_fac.Items.Add(new ComboBoxItem().Content = "0.5");
+                Radius_fac.Items.Add(new ComboBoxItem().Content = "1.0");
+                Radius_fac.Items.Add(new ComboBoxItem().Content = "1.5");
+                Radius_fac.Items.Add(new ComboBoxItem().Content = "2.0");
+                Radius_fac.Items.Add(new ComboBoxItem().Content = "2.5");
+                Radius_fac.Items.Add(new ComboBoxItem().Content = "3.0");
+                Radius_fac.Items.Add(new ComboBoxItem().Content = "5.0");
+                Radius_fac.Items.Add(new ComboBoxItem().Content = "10");
+                Radius_fac.SelectedIndex = 1;
+            }
+            if (Units.Items.Count == 0)
+            {
+                Units.Items.Add(new ComboBoxItem().Content = "m, Pa");
+                Units.Items.Add(new ComboBoxItem().Content = "m, kPa");
+                Units.Items.Add(new ComboBoxItem().Content = "m, MPa");
+                Units.Items.Add(new ComboBoxItem().Content = "m, mPa");
+                Units.Items.Add(new ComboBoxItem().Content = "mm, Pa");
+                Units.Items.Add(new ComboBoxItem().Content = "mm, kPa");
+                Units.Items.Add(new ComboBoxItem().Content = "mm, MPa");
+                Units.Items.Add(new ComboBoxItem().Content = "mm, mPa");
+                Units.SelectedIndex = 0;
+            }
+            if (CFD_size.Items.Count == 0)
+            {
+                CFD_size.Items.Add(new ComboBoxItem().Content = "0.25");
+                CFD_size.Items.Add(new ComboBoxItem().Content = "0.5");
+                CFD_size.Items.Add(new ComboBoxItem().Content = "1");
+                CFD_size.Items.Add(new ComboBoxItem().Content = "2");
+                CFD_size.Items.Add(new ComboBoxItem().Content = "3");
+                CFD_size.Items.Add(new ComboBoxItem().Content = "4");
+                CFD_size.Items.Add(new ComboBoxItem().Content = "5");
+                CFD_size.Items.Add(new ComboBoxItem().Content = "10");
+                CFD_size.Items.Add(new ComboBoxItem().Content = "15");
+                CFD_size.SelectedIndex = 2;
+            }
 
             // Activate/Deactivate Buttons and others
             ClipCheck.IsEnabled = false;
@@ -697,6 +712,9 @@ namespace CFD_Mapper
             DialogResult dialogResult = System.Windows.Forms.MessageBox.Show("This project will be deleted", "New Project", MessageBoxButtons.OKCancel);
             if (dialogResult == System.Windows.Forms.DialogResult.OK)
             {
+                //Enable units change
+                Units.IsEnabled = true;
+
                 // Create new instance
                 CreateNew();
             }
